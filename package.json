@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "build": "tsc && vite build --mode production",
+    "preview": "vite preview --port 3000",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,css,scss,json,md}\"",
@@ -18,8 +18,9 @@
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
     "type-check": "tsc --noEmit",
-    "netlify:dev": "netlify dev",
-    "netlify:deploy": "netlify deploy --prod"
+    "preview:netlify": "netlify dev",
+    "deploy:prod": "netlify deploy --prod",
+    "deploy:preview": "netlify deploy"
   },
   "dependencies": {
     "@netlify/functions": "^2.0.0",

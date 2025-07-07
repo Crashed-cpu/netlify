@@ -1,14 +1,53 @@
+# Global settings
 [build]
-  command = "npm install --production=false && npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
   functions = "netlify/functions"
+  base = "/"
 
+# Environment variables
 [build.environment]
   NODE_VERSION = "18.20.3"
   NPM_FLAGS = "--legacy-peer-deps"
   NODE_ENV = "production"
   CI = "false"
   VITE_APP_VERSION = "1.0.0"
+  NETLIFY_USE_YARN = "false"
+
+# Development settings
+[dev]
+  framework = "vite"
+  command = "npm run dev"
+  port = 3000
+  targetPort = 3000
+  publish = "dist"
+  autoLaunch = true
+
+# Build settings
+[build.processing]
+  skip_processing = false
+
+# Image optimization
+[build.processing.html]
+  pretty_urls = true
+
+# Build plugins
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+  
+# Context-specific settings
+[context.production]
+  command = "npm run build"
+  environment = { NODE_ENV = "production" }
+
+[context.deploy-preview]
+  environment = { NODE_ENV = "staging" }
+
+[context.branch-deploy]
+  environment = { NODE_ENV = "staging" }
 
 [functions]
   node_bundler = "esbuild"
