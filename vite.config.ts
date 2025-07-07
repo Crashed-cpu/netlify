@@ -3,10 +3,11 @@ import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { resolve } from 'path';
 
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory
-  const env = loadEnv(mode, process.cwd(), '');
+  loadEnv(mode, process.cwd(), '');
   const isProduction = mode === 'production';
 
   const plugins: PluginOption[] = [
@@ -100,9 +101,11 @@ export default defineConfig(({ mode }) => {
     base: '/',
     resolve: {
       alias: {
-        '@': '/src',
+        '@': resolve(__dirname, './src'),
       },
     },
+    // Build configuration is already defined below
+    // Keeping only one build configuration to avoid duplicates
     server: {
       port: 3000,
       open: true,

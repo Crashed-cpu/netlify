@@ -16,13 +16,16 @@
     "prepare": "husky install",
     "type-check": "tsc --noEmit",
     "netlify:dev": "netlify dev",
-    "netlify:deploy": "netlify deploy --prod"
+    "netlify:deploy": "netlify deploy --prod",
+    "postinstall": "vite build"
   },
   "dependencies": {
     "@netlify/functions": "^2.0.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "vite": "^5.0.0",
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^8.56.0",
