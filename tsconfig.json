@@ -49,20 +49,13 @@
     /* Completeness */
     "skipDefaultLibCheck": true
   },
-  "include": [
-    "src",
-    "vite.config.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.d.ts",
-    "**/*.test.ts",
-    "**/*.test.tsx"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"],
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.node.json"
+    }
   ],
   "ts-node": {
     "compilerOptions": {

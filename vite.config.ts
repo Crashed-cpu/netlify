@@ -14,7 +14,9 @@ export default defineConfig(({ mode }) => {
     react({
       jsxRuntime: 'automatic',
       babel: {
-        plugins: ['react-refresh/babel'],
+        plugins: [
+          ['react-refresh/babel', {}, 'react-refresh']
+        ],
       },
     }),
     tsconfigPaths(),
