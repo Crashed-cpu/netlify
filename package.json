@@ -17,7 +17,7 @@
     "type-check": "tsc --noEmit",
     "netlify:dev": "netlify dev",
     "netlify:deploy": "netlify deploy --prod",
-    "postinstall": "if [ -z \"$NETLIFY\" ]; then vite build; fi"
+    "postinstall": "echo 'Skipping postinstall for Netlify build'"
   },
   "dependencies": {
     "@netlify/functions": "^2.0.0",
@@ -28,6 +28,9 @@
     "vite": "^5.1.4",
     "@vitejs/plugin-react": "^4.3.1",
     "vite-tsconfig-paths": "^4.3.2"
+  },
+  "overrides": {
+    "vite": "^5.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^8.56.0",
