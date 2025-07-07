@@ -1,6 +1,6 @@
 # Global settings for build
 [build]
-  command = "npm install && npm run build"
+  command = "npm install --include=dev && npm run build"
   publish = "dist"
   functions = "netlify/functions"
   base = "/"
@@ -13,6 +13,7 @@
   CI = "false"
   VITE_APP_VERSION = "1.0.0"
   NETLIFY_USE_YARN = "false"
+  NPM_VERBOSE = "true"
 
 # Development settings
 [dev]
