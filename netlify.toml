@@ -1,6 +1,6 @@
 # Global settings for build
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "npm install --legacy-peer-deps && npm install -g typescript && npm run build"
   publish = "dist"
   functions = "netlify/functions"
   base = "/"
