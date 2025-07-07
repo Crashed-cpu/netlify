@@ -98,16 +98,15 @@ export default defineConfig(({ mode }) => {
     );
   }
 
-  return {
+  const config = {
     plugins,
     base: '/',
+    publicDir: 'public',
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
       },
     },
-    // Build configuration is already defined below
-    // Keeping only one build configuration to avoid duplicates
     server: {
       port: 3000,
       open: true,
@@ -119,33 +118,50 @@ export default defineConfig(({ mode }) => {
     },
     preview: {
       port: 3000,
-      open: true,
       strictPort: true,
       host: true,
     },
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
-      sourcemap: !isProduction,
-      minify: isProduction ? 'terser' : false,
-      chunkSizeWarningLimit: 800,
+      sourcemap: isProduction ? ('hidden' as const) : false,
+      minify: isProduction ? ('esbuild' as const) : false,
+      cssCodeSplit: true,
+      reportCompressedSize: false,
       rollupOptions: {
         output: {
-          manualChunks: {
-            react: ['react', 'react-dom', 'react-router-dom'],
-            vendor: ['lucide-react'],
+          manualChunks: (id: string) => {
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+                return 'vendor_react';
+              }
+              if (id.includes('lucide-react')) {
+                return 'vendor_icons';
+              }
+              return 'vendor';
+            }
+            return undefined;
           },
+          entryFileNames: 'assets/[name].[hash].js',
+          chunkFileNames: 'assets/[name].[hash].js',
+          assetFileNames: 'assets/[name].[hash][extname]',
         },
       },
+      chunkSizeWarningLimit: 1000,
     },
-    // Environment variables
     define: {
-      'process.env': process.env,
+      'import.meta.env.VITE_APP_VERSION': JSON.stringify(process.env.VITE_APP_VERSION || '1.0.0'),
     },
-    // CSS configuration
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react-router-dom'],
+      exclude: ['lucide-react'],
+      esbuildOptions: {
+        target: 'es2020',
+      },
+    },
     css: {
       modules: {
-        localsConvention: 'camelCaseOnly',
+        localsConvention: 'camelCaseOnly' as const,
       },
       preprocessorOptions: {
         scss: {
@@ -153,8 +169,7 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    optimizeDeps: {
-      exclude: ['lucide-react'],
-    },
   };
+
+  return config;
 });
