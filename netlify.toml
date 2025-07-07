@@ -20,15 +20,6 @@
 [dev]
   framework = "vite"
   command = "npm run dev"
-  port = 8888
-  targetPort = 3000
-  publish = "dist"
-  autoLaunch = true
-
-# Development settings
-[dev]
-  framework = "vite"
-  command = "npm run dev"
   port = 8888  # Port for the Netlify proxy
   targetPort = 3000  # Port where Vite runs
   publish = "dist"
