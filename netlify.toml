@@ -1,6 +1,6 @@
 # Global settings for build
 [build]
-  command = "npm install --include=dev && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = "dist"
   functions = "netlify/functions"
   base = "/"
@@ -14,6 +14,16 @@
   VITE_APP_VERSION = "1.0.0"
   NETLIFY_USE_YARN = "false"
   NPM_VERBOSE = "true"
+  NPM_CONFIG_LEGACY_PEER_DEPS = "true"
+
+# Development settings
+[dev]
+  framework = "vite"
+  command = "npm run dev"
+  port = 8888
+  targetPort = 3000
+  publish = "dist"
+  autoLaunch = true
 
 # Development settings
 [dev]
