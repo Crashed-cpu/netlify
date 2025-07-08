@@ -1,7 +1,7 @@
-const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { JWT } = require('google-auth-library');
+// Note: This is a placeholder function. You'll need to add actual dependencies
+// and configure your preferred form handling service (Google Sheets, SendGrid, etc.)
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {

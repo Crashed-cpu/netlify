@@ -1,4 +1,4 @@
-# Modern Portfolio Website
+# Ayush Saini - Portfolio Website
 
 A modern, responsive portfolio website built with React, TypeScript, Vite, and Tailwind CSS.
 
@@ -9,6 +9,7 @@ A modern, responsive portfolio website built with React, TypeScript, Vite, and T
 - 🛠 Type-safe with TypeScript
 - 📱 Fully responsive design
 - ✨ Smooth animations and transitions
+- 🌐 Ready for Netlify deployment
 
 ## 🛠️ Getting Started
 
@@ -28,52 +29,78 @@ A modern, responsive portfolio website built with React, TypeScript, Vite, and T
 2. Install dependencies:
    ```bash
    npm install
-   # or
-   yarn
    ```
 
 3. Start the development server:
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
 
-4. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## 📦 Available Scripts
 
 - `dev` - Start development server
 - `build` - Build for production
 - `preview` - Preview production build
-- `lint` - Lint code with ESLint
-
-## 🧪 Testing
-
-```bash
-# Run tests
-npm test
-
-# Run tests in watch mode
-npm test:watch
-
-# Run coverage
-npm test:coverage
-```
+- `type-check` - Run TypeScript type checking
 
 ## 🚀 Deployment
 
-### Vercel
+### Netlify Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourusername%2Fportfolio)
+This project is configured for easy deployment on Netlify:
 
-### Netlify
+1. **Push to GitHub**: 
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/portfolio)
+2. **Deploy on Netlify**:
+   - Connect your GitHub repository to Netlify
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - The project will automatically deploy
+
+### Manual Deployment
+
+1. Build the project:
+   ```bash
+   npm run build
+   ```
+
+2. Deploy the `dist` folder to your hosting provider
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── Background.tsx
+│   ├── Contact.tsx
+│   ├── Hero.tsx
+│   ├── Journal.tsx
+│   ├── Navigation.tsx
+│   ├── Projects.tsx
+│   ├── Skills.tsx
+│   └── Snapshots.tsx
+├── App.tsx             # Main app component
+├── main.tsx           # Entry point
+└── index.css          # Global styles
+```
+
+## 🔧 Configuration
+
+- **Vite**: Configured for fast development and optimized builds
+- **Tailwind CSS**: Custom configuration with Inter and JetBrains Mono fonts
+- **TypeScript**: Strict type checking enabled
+- **Netlify**: Functions and redirects configured
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
@@ -82,4 +109,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Lucide Icons](https://lucide.dev/)
-devport
