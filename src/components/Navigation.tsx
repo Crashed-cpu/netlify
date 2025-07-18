@@ -46,12 +46,19 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Terminal className="h-8 w-8 text-cyan-400" />
-            <span className="text-xl font-bold font-mono text-cyan-400">
+          <button 
+            onClick={() => {
+              scrollToSection('home');
+              setIsOpen(false);
+            }}
+            className="flex items-center space-x-2 focus:outline-none group"
+            aria-label="Scroll to top"
+          >
+            <Terminal className="h-8 w-8 text-cyan-400 group-hover:scale-110 transition-transform duration-200" />
+            <span className="text-xl font-bold font-mono text-cyan-400 group-hover:text-cyan-300 transition-colors duration-200">
               ayush.saini
             </span>
-          </div>
+          </button>
           
           {/* Desktop Navigation */}
           <div className="hidden md:block">
