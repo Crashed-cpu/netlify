@@ -1,81 +1,60 @@
 https://stackblitz.com/storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQWdCV3dFPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--2b5547059ca7be8f5ee1c13219866f13dca182b8//.gitignore
 .env
 
-   # Dependencies
-   node_modules/
-   .pnp
-   .pnp.js
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
 
-   # Testing
-   coverage/
+# Testing
+coverage/
 
-   # Production
-   build/
-   dist/
+# Production
+build/
+dist/
 
-   # Misc
-   .DS_Store
-   .env*.local
-   .env
-   npm-debug.log*
-   yarn-debug.log*
-   yarn-error.log*
+# Environment
+.env
+.env.*
+!.env.example
 
-   # Editor directories and files
-   .idea
-   .vscode/*
-   !.vscode/extensions.json
-   *.suo
-   *.ntvs*
-   *.njsproj
-   *.sln
-   *.sw?
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-   # Local Netlify folder
-   .netlify/
+# Editor
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-   # npm cache
-   .npm
-   .npm-cache/
+# Netlify
+.netlify/
 
-   # Vite cache
-   .cache/
+# Cache
+.cache/
+.npm
+.npm-cache/
+.eslintcache
 
-   # TypeScript
-   *.tsbuildinfo
+# Build
+*.tsbuildinfo
+*.tgz
+*.local
 
-   # Optional eslint cache
-   .eslintcache
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-   # Optional REPL history
-   .node_repl_history
+# Vite
+.vite/
 
-   # Output of 'npm pack'
-   *.tgz
-
-   # dotenv environment variables file
-   .env
-   .env.*
-   !.env.example
-
-   # Vite
-   *.local
-
-   # Debug logs
-   npm-debug.log*
-   yarn-debug.log*
-   yarn-error.log*
-
-   # Build outputs
-   build/
-   dist/
-
-   # Environment files (except example)
-   .env
-   .env.*
-   !.env.example
-
-   # OS generated files
-   Thumbs.db
-   ehthumbs.db
-   Desktop.ini
+# Debug
+*.log
