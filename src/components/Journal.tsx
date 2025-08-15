@@ -4,56 +4,100 @@ import { BookOpen, FileText, Briefcase, Quote, GraduationCap } from 'lucide-reac
 const Journal = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filters = ['All', 'Logs', 'Essays', 'Internships', 'Quotes', 'Education'];
+  const filters = ['All', 'Blog', 'Case Studies', 'Logs', 'Essays', 'Internships', 'Quotes', 'Education'];
 
   const journalEntries = [
+    // Blog/Case Studies
+    {
+      title: 'Why Top Companies Choose Linux: A Deep Dive',
+      summary: 'Exploring how tech giants leverage Linux for stability, security, and cost-efficiency in their infrastructure.',
+      type: 'Blog',
+      date: '2025-07-15',
+      tags: ['Linux', 'Enterprise', 'Open Source', 'Infrastructure']
+    },
+    {
+      title: 'Docker in Production: Real-World Success Stories',
+      summary: 'Case studies on how companies achieve consistency and scalability with Docker containerization.',
+      type: 'Case Studies',
+      date: '2025-07-10',
+      tags: ['Docker', 'Containers', 'DevOps', 'Microservices']
+    },
+    {
+      title: 'Kubernetes at Scale: Enterprise Adoption Patterns',
+      summary: 'Analyzing how leading organizations implement Kubernetes for container orchestration at scale.',
+      type: 'Case Studies',
+      date: '2025-07-05',
+      tags: ['Kubernetes', 'Cloud Native', 'Scalability', 'Orchestration']
+    },
+    {
+      title: 'Case Study: Building a Scalable Web Scraper',
+      summary: 'How I built a distributed web scraper that processes millions of pages daily using Python and Kubernetes.',
+      type: 'Case Studies',
+      date: '2025-06-25',
+      tags: ['Python', 'Web Scraping', 'Kubernetes', 'Scalability']
+    },
+    {
+      title: 'The Future of Automation in DevOps',
+      summary: 'Exploring how automation is transforming the DevOps landscape and what it means for engineers.',
+      type: 'Blog',
+      date: '2025-06-20',
+      tags: ['DevOps', 'Automation', 'CI/CD', 'Infrastructure']
+    },
+    {
+      title: 'Case Study: Migrating Monolith to Microservices',
+      summary: 'Lessons learned from breaking down a monolithic application into microservices at scale.',
+      type: 'Case Studies',
+      date: '2025-06-15',
+      tags: ['Microservices', 'Architecture', 'Scalability', 'Docker']
+    },
     {
       title: 'The Automation Mindset',
       summary: 'Why I believe automation should be the foundation, not an afterthought.',
       type: 'Essays',
-      date: '2024-01-15',
+      date: '2025-06-10',
       tags: ['Philosophy', 'Automation', 'Engineering']
     },
     {
       title: 'Building uvpy: Modular Python Design',
       summary: 'Technical deep-dive into creating reusable Python modules.',
       type: 'Logs',
-      date: '2024-01-10',
+      date: '2025-06-05',
       tags: ['Python', 'Design', 'Architecture']
     },
     {
       title: 'AI & Data Science Journey',
       summary: 'Currently pursuing B.Tech in AI & Data Science at Arya Group of Colleges.',
       type: 'Education',
-      date: '2023-09-01',
+      date: '2025-05-20',
       tags: ['Education', 'AI', 'Data Science']
     },
     {
-      title: 'Voice AI Internship Experience',
-      summary: 'Working on advanced voice processing systems and natural language interfaces.',
+      title: 'LinuxWorld Informatics - AI/ML Internship',
+      summary: 'Summer Internship Program on <strong>"Build Autonomous AI Agents with ML/DL for Intelligent Task Execution and Decision-Making"</strong> at LinuxWorld Informatics Pvt. Ltd. under the mentorship of The World Record Holder & CTO- Mr. Vimal Daga. Focused on developing practical AI/ML solutions for intelligent task automation.',
       type: 'Internships',
-      date: '2024-01-05',
-      tags: ['AI', 'Voice', 'Internship']
+      date: '2025-06-15',
+      endDate: '2025-08-15',
+      tags: ['AI/ML', 'Deep Learning', 'Autonomous Agents', 'Machine Learning', 'Linux', 'Internship']
     },
     {
       title: 'Systems Thinking Quote',
       summary: '"Structured learning gave me the tools—self-learning gave me the vision."',
       type: 'Quotes',
-      date: '2024-01-01',
+      date: '2025-05-10',
       tags: ['Philosophy', 'Learning']
     },
     {
       title: 'Docker ML API Deployment',
       summary: 'Containerizing machine learning models for scalable deployment.',
       type: 'Logs',
-      date: '2023-12-20',
+      date: '2025-05-05',
       tags: ['Docker', 'ML', 'DevOps']
     },
     {
       title: 'WhatsApp Automation Insights',
       summary: 'Building intelligent message workflows that understand context.',
       type: 'Essays',
-      date: '2023-12-15',
+      date: '2025-05-01',
       tags: ['Automation', 'AI', 'Integration']
     }
   ];
@@ -69,6 +113,8 @@ const Journal = () => {
       case 'Internships': return Briefcase;
       case 'Quotes': return Quote;
       case 'Education': return GraduationCap;
+      case 'Blog': return BookOpen;
+      case 'Case Studies': return FileText;
       default: return FileText;
     }
   };
@@ -80,6 +126,8 @@ const Journal = () => {
       case 'Internships': return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
       case 'Quotes': return 'text-purple-400 bg-purple-500/10 border-purple-500/30';
       case 'Education': return 'text-orange-400 bg-orange-500/10 border-orange-500/30';
+      case 'Blog': return 'text-blue-400 bg-blue-500/10 border-blue-500/30';
+      case 'Case Studies': return 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30';
       default: return 'text-gray-400 bg-gray-500/10 border-gray-500/30';
     }
   };
@@ -153,9 +201,10 @@ const Journal = () => {
                   <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
                     {entry.title}
                   </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {entry.summary}
-                  </p>
+                  <div 
+                    className="text-gray-300 text-sm leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: entry.summary }}
+                  />
                   
                   <div className="flex flex-wrap gap-2 pt-2">
                     {entry.tags.map((tag) => (

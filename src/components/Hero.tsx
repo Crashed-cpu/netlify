@@ -1,5 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, Download, ExternalLink } from 'lucide-react';
+import { smoothScroll } from '../utils/smoothScroll';
 
 const Hero = () => {
   const socialLinks = [
@@ -8,19 +9,8 @@ const Hero = () => {
     { icon: Twitter, href: 'https://x.com/Ayushsa82728134', label: 'Twitter' },
   ];
 
-  const scrollToProjects = () => {
-    const element = document.getElementById('projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollToProjects = () => smoothScroll('projects');
+  const scrollToContact = () => smoothScroll('contact');
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative px-4 sm:px-6 lg:px-8">

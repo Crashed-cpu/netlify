@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Menu, X, Terminal } from 'lucide-react';
+import { smoothScroll } from '../utils/smoothScroll';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,13 +34,10 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToSection = useCallback((sectionId: string) => {
+    smoothScroll(sectionId);
     setIsOpen(false);
-  };
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50">
@@ -69,8 +67,8 @@ const Navigation = () => {
                   onClick={() => scrollToSection(item.id)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     activeSection === item.id
-                      ? 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/30'
-                      : 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/5'
+                      ? 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/30 transform hover:scale-105'
+                      : 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/5 hover:scale-105'
                   }`}
                 >
                   {item.label}

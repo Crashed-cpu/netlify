@@ -1,99 +1,290 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, Filter, ArrowRight, Star } from 'lucide-react';
+import { Filter } from 'lucide-react';
+import ProjectCard from './ui/ProjectCard';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const filters = ['All', 'Automation', 'ML', 'DevOps', 'Fullstack'];
+  const filters = ['All', 'Python', 'Linux', 'Docker', 'JavaScript', 'Machine Learning', 'Git', 'DevOps', 'Automation'];
 
   const projects = [
+    // Featured Projects
     {
-      title: 'uvpy',
-      summary: 'Modular Python toolkit for rapid development and automation',
-      tags: ['Python', 'Automation', 'CLI'],
-      category: 'Automation',
-      liveDemo: 'https://github.com/yourusername/uvpy',
-      sourceCode: 'https://github.com/yourusername/uvpy',
+      title: 'Python Automation Suite',
+      summary: 'Collection of Python scripts for system automation and web interactions',
+      tags: ['Python', 'Automation', 'Web Scraping', 'APIs'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/python-automation-suite',
       featured: true,
-      stars: 128,
-      lastUpdated: '2023-10-15'
+      stars: 18
     },
     {
-      title: 'Talky',
-      summary: 'AI-powered voice interaction system with natural language processing',
-      tags: ['AI', 'Voice', 'NLP', 'Python'],
-      category: 'ML',
-      liveDemo: 'https://github.com/yourusername/talky',
-      sourceCode: 'https://github.com/yourusername/talky',
+      title: 'Linux System Manager',
+      summary: 'Comprehensive Linux system administration toolkit and scripts',
+      tags: ['Linux', 'Bash', 'System Administration'],
+      category: 'Linux',
+      sourceCode: 'https://github.com/ayushsainii/linux-system-manager',
       featured: true,
-      stars: 89,
-      lastUpdated: '2023-09-22'
+      stars: 15
     },
     {
-      title: 'WhatsApp Automation Tool',
-      summary: 'Intelligent message automation and workflow management',
-      tags: ['Automation', 'API', 'Node.js'],
-      category: 'Automation',
-      liveDemo: 'https://github.com/yourusername/whatsapp-automation',
-      sourceCode: 'https://github.com/yourusername/whatsapp-automation',
+      title: 'Docker Dev Environment',
+      summary: 'Containerized development environments for various tech stacks',
+      tags: ['Docker', 'DevOps', 'Containers'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-dev-env',
       featured: true,
-      stars: 156,
-      lastUpdated: '2023-11-05'
+      stars: 22
+    },
+
+    // Python Projects
+    {
+      title: 'Email Sender',
+      summary: 'Python script to send emails programmatically',
+      tags: ['Python', 'Email', 'SMTP', 'Automation'],
+      category: 'Python',
+      sourceCode: 'https://github.com/Crashed-cpu/python-automation',
+      stars: 6
     },
     {
-      title: 'Linux Toolkit',
-      summary: 'Comprehensive system administration and monitoring suite',
-      tags: ['Linux', 'DevOps', 'Shell'],
-      category: 'DevOps',
-      liveDemo: 'https://github.com/yourusername/linux-toolkit',
-      sourceCode: 'https://github.com/yourusername/linux-toolkit',
-      featured: false,
-      stars: 42,
-      lastUpdated: '2023-08-30'
+      title: 'RAM Reader',
+      summary: 'Python script to read and analyze system RAM',
+      tags: ['Python', 'System', 'Memory'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/python-ram-reader',
+      stars: 7
     },
     {
-      title: 'Docker ML APIs',
-      summary: 'Containerized machine learning model deployment platform',
-      tags: ['Docker', 'ML', 'API', 'Python'],
-      category: 'ML',
-      liveDemo: 'https://github.com/yourusername/docker-ml-apis',
-      sourceCode: 'https://github.com/yourusername/docker-ml-apis',
-      featured: false,
-      stars: 67,
-      lastUpdated: '2023-10-10'
+      title: 'WhatsApp Automation',
+      summary: 'Send WhatsApp messages programmatically',
+      tags: ['Python', 'WhatsApp', 'Automation'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/whatsapp-automation',
+      stars: 15
     },
     {
-      title: 'Automation Panel',
-      summary: 'Web-based dashboard for managing automation workflows',
-      tags: ['React', 'Node.js', 'Dashboard'],
-      category: 'Fullstack',
-      liveDemo: 'https://github.com/yourusername/automation-panel',
-      sourceCode: 'https://github.com/yourusername/automation-panel',
-      featured: false,
-      stars: 34,
-      lastUpdated: '2023-09-15'
+      title: 'Email Sender with Attachments',
+      summary: 'Python script to send emails with attachments',
+      tags: ['Python', 'Email', 'SMTP', 'Attachments'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/python-email-sender',
+      stars: 5
     },
     {
-      title: 'JS API Bots',
-      summary: 'Collection of intelligent bots for various platforms',
-      tags: ['JavaScript', 'Bots', 'API'],
-      category: 'Automation',
-      liveDemo: 'https://github.com/yourusername/js-api-bots',
-      sourceCode: 'https://github.com/yourusername/js-api-bots',
-      featured: false,
-      stars: 78,
-      lastUpdated: '2023-11-12'
+      title: 'Anonymous WhatsApp',
+      summary: 'Send WhatsApp messages without saving contacts',
+      tags: ['Python', 'WhatsApp', 'Automation'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/anonymous-whatsapp',
+      stars: 12
     },
     {
-      title: 'PixelPaper',
-      summary: 'Digital paper and note-taking application with AI features',
-      tags: ['React', 'AI', 'Productivity'],
-      category: 'Fullstack',
-      liveDemo: 'https://github.com/yourusername/pixelpaper',
-      sourceCode: 'https://github.com/yourusername/pixelpaper',
-      featured: false,
-      stars: 112,
-      lastUpdated: '2023-10-28'
+      title: 'SMS Sender',
+      summary: 'Send SMS messages using Python',
+      tags: ['Python', 'SMS', 'Twilio'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/sms-sender',
+      stars: 8
+    },
+    {
+      title: 'Voice Caller',
+      summary: 'Make phone calls programmatically',
+      tags: ['Python', 'Voice', 'Twilio'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/voice-caller',
+      stars: 6
+    },
+    {
+      title: 'Google Search CLI',
+      summary: 'Search Google from the command line',
+      tags: ['Python', 'Web Scraping', 'CLI'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/google-search-cli',
+      stars: 10
+    },
+    {
+      title: 'Social Media Poster',
+      summary: 'Automate posts on Instagram, Twitter, and Facebook',
+      tags: ['Python', 'Social Media', 'Automation'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/social-media-poster',
+      stars: 18
+    },
+    {
+      title: 'Web Scraper',
+      summary: 'Download and extract data from websites',
+      tags: ['Python', 'Web Scraping', 'BeautifulSoup'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/web-scraper',
+      stars: 14
+    },
+    {
+      title: 'Anonymous Emailer',
+      summary: 'Send emails without revealing your identity',
+      tags: ['Python', 'Email', 'Privacy'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/anonymous-emailer',
+      stars: 9
+    },
+    {
+      title: 'Image Generator',
+      summary: 'Create digital images programmatically',
+      tags: ['Python', 'PIL', 'Image Processing'],
+      category: 'Python',
+      sourceCode: 'https://github.com/ayushsainii/image-generator',
+      stars: 11
+    },
+    {
+      title: 'Face Swapper',
+      summary: 'Swap faces between two images',
+      tags: ['Python', 'OpenCV', 'Face Recognition'],
+      category: 'Machine Learning',
+      sourceCode: 'https://github.com/ayushsainii/face-swapper',
+      stars: 16
+    },
+    {
+      title: 'Linux GUI Inspector',
+      summary: 'Analyze GUI application commands',
+      tags: ['Linux', 'GUI', 'System'],
+      category: 'Linux',
+      sourceCode: 'https://github.com/ayushsainii/linux-gui-inspector',
+      stars: 3
+    },
+    {
+      title: 'Linux Icon Manager',
+      summary: 'Modify application icons in Linux',
+      tags: ['Linux', 'GUI', 'Theming'],
+      category: 'Linux',
+      sourceCode: 'https://github.com/ayushsainii/linux-icon-manager',
+      stars: 7
+    },
+    {
+      title: 'Terminal Communications',
+      summary: 'Send messages from Linux terminal',
+      tags: ['Linux', 'Terminal', 'Automation'],
+      category: 'Linux',
+      sourceCode: 'https://github.com/ayushsainii/terminal-communications',
+      stars: 9
+    },
+    {
+      title: 'Docker Apache',
+      summary: 'Apache web server in Docker',
+      tags: ['Docker', 'Apache', 'Web Server'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-apache',
+      stars: 6
+    },
+    {
+      title: 'Docker Systemd',
+      summary: 'Systemd inside Docker containers',
+      tags: ['Docker', 'Systemd', 'Containers'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-systemd',
+      stars: 8
+    },
+    {
+      title: 'GUI in Docker',
+      summary: 'Run GUI applications in Docker',
+      tags: ['Docker', 'GUI', 'X11'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-gui',
+      stars: 10
+    },
+    {
+      title: 'Docker Audio',
+      summary: 'Audio support in Docker containers',
+      tags: ['Docker', 'Audio', 'PulseAudio'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-audio',
+      stars: 5
+    },
+    {
+      title: 'Docker in Docker',
+      summary: 'Nested Docker environments',
+      tags: ['Docker', 'DIND', 'CI/CD'],
+      category: 'Docker',
+      sourceCode: 'https://github.com/ayushsainii/docker-in-docker',
+      stars: 7
+    },
+    
+    // JavaScript Projects
+    {
+      title: 'Webcam Photo',
+      summary: 'Capture photos using browser webcam',
+      tags: ['JavaScript', 'WebRTC', 'Camera'],
+      category: 'JavaScript',
+      liveDemo: 'https://ayushsainii.github.io/webcam-photo',
+      sourceCode: 'https://github.com/Crashed-cpu/javascript_automation',
+      stars: 9
+    },
+
+    {
+      title: 'Photo Emailer',
+      summary: 'Send captured photos via email',
+      tags: ['JavaScript', 'Email', 'WebRTC'],
+      category: 'JavaScript',
+      sourceCode: 'https://github.com/Crashed-cpu/javascript_automation',
+      stars: 8
+    },
+    {
+      title: 'Video Recorder',
+      summary: 'Record and email videos from browser',
+      tags: ['JavaScript', 'MediaRecorder', 'WebRTC'],
+      category: 'JavaScript',
+      sourceCode: 'https://github.com/Crashed-cpu/javascript_automation',
+      stars: 11
+    },
+    {
+      title: 'WhatsApp Web',
+      summary: 'Send WhatsApp messages via web',
+      tags: ['JavaScript', 'WhatsApp', 'API'],
+      category: 'JavaScript',
+      sourceCode: 'https://github.com/Crashed-cpu/javascript_automation',
+      stars: 14
+    },
+    
+    // Machine Learning Projects
+    {
+      title: 'Linear Regression',
+      summary: 'Dockerized linear regression model',
+      tags: ['Python', 'Machine Learning', 'Docker'],
+      category: 'Machine Learning',
+      sourceCode: 'https://github.com/ayushsainii/linear-regression-docker',
+      stars: 7
+    },
+    {
+      title: 'Flask ML App',
+      summary: 'Machine learning model served via Flask',
+      tags: ['Python', 'Flask', 'Docker', 'ML'],
+      category: 'Machine Learning',
+      sourceCode: 'https://github.com/ayushsainii/flask-ml-app',
+      stars: 9
+    },
+    
+    // Git Projects
+    {
+      title: 'Git Basics',
+      summary: 'Basic Git repository setup and management',
+      tags: ['Git', 'Version Control'],
+      category: 'Git',
+      sourceCode: 'https://github.com/ayushsainii/git-basics',
+      stars: 3
+    },
+    {
+      title: 'Branch Management',
+      summary: 'Advanced Git branching strategies',
+      tags: ['Git', 'Branches', 'Workflow'],
+      category: 'Git',
+      sourceCode: 'https://github.com/ayushsainii/git-branching',
+      stars: 5
+    },
+    {
+      title: 'Open Source Contribution',
+      summary: 'Example of contributing to open source',
+      tags: ['Git', 'GitHub', 'Open Source'],
+      category: 'Git',
+      sourceCode: 'https://github.com/ayushsainii/open-source-contrib',
+      stars: 8
     }
   ];
 
@@ -132,75 +323,21 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <div
+          {filteredProjects.map((project) => (
+            <ProjectCard
               key={project.title}
-              className={`group relative bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm border rounded-xl p-6 transition-all duration-500 transform hover:-translate-y-1 hover:shadow-2xl ${
-                project.featured 
-                  ? 'border-cyan-500/30 hover:border-cyan-500/60 hover:shadow-cyan-500/10' 
-                  : 'border-gray-700 hover:border-gray-600 hover:shadow-gray-900/20'
-              }`}
-            >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-              
-              {project.featured && (
-                <div className="absolute -top-3 -right-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-lg shadow-cyan-500/20">
-                  <Star size={12} className="fill-yellow-300 text-yellow-300" />
-                  <span>Featured</span>
-                </div>
-              )}
-              
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {project.summary}
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-gray-800/80 text-gray-300 text-xs rounded-full border border-gray-700 group-hover:border-cyan-500/40 group-hover:text-cyan-400 group-hover:bg-gray-800 transition-all duration-200 hover:scale-105"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex items-center justify-between text-xs text-gray-400 mt-3">
-                  <div className="flex items-center gap-1">
-                    <Star size={14} className="text-yellow-400" />
-                    <span>{project.stars}</span>
-                  </div>
-                  <span>Updated {project.lastUpdated}</span>
-                </div>
-
-                <div className="flex gap-3 pt-4 mt-auto">
-                  <a
-                    href={project.liveDemo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-[1.02] group/button"
-                  >
-                    <span>Live Demo</span>
-                    <ExternalLink size={14} className="opacity-70 group-hover/button:opacity-100 group-hover/button:translate-x-0.5 transition-all duration-200" />
-                  </a>
-                  <a
-                    href={project.sourceCode}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-800/80 hover:bg-gray-700/90 text-gray-100 text-sm font-medium rounded-lg transition-all duration-300 border border-gray-700 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-cyan-500/10 hover:scale-[1.02] group/button"
-                  >
-                    <Github size={14} className="opacity-70 group-hover/button:opacity-100 group-hover/button:scale-110 transition-all duration-200" />
-                    <span>Code</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+              title={project.title}
+              summary={project.summary}
+              tags={project.tags}
+              category={project.category}
+              sourceCode={project.sourceCode}
+              demoUrl={project.liveDemo}
+              featured={project.featured}
+              stars={project.stars}
+              onViewDetails={() => {
+                // Handle view details click if needed
+              }}
+            />
           ))}
         </div>
       </div>

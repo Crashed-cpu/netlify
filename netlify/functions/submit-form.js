@@ -1,45 +1,106 @@
-// Note: This is a placeholder function. You'll need to add actual dependencies
-// and configure your preferred form handling service (Google Sheets, SendGrid, etc.)
+// Netlify Function to handle form submissions
+// This function works with the built-in Netlify Forms functionality
+// while adding additional processing and validation
 
-export const handler = async (event, context) => {
+exports.handler = async (event, context) => {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: JSON.stringify({ error: 'Method Not Allowed' }),
+      body: JSON.stringify({ 
+        success: false,
+        error: 'Method Not Allowed',
+        message: 'Only POST requests are accepted'
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      }
     };
   }
 
   try {
-    const data = JSON.parse(event.body);
+    // Parse the form data from URL-encoded format
+    const params = new URLSearchParams(event.body);
+    const formData = {};
     
-    // Validate required fields
-    if (!data.name || !data.email || !data.message) {
+    // Convert form data to object
+    for (const [key, value] of params.entries()) {
+      formData[key] = value;
+    }
+
+    // Required fields validation
+    const requiredFields = ['name', 'email', 'message'];
+    const missingFields = requiredFields.filter(field => !formData[field]);
+    
+    if (missingFields.length > 0) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields' }),
+        body: JSON.stringify({ 
+          success: false,
+          error: 'Validation Error',
+          message: `Missing required fields: ${missingFields.join(', ')}`
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
       };
     }
 
-    // Here you would typically save the form data to a database or service
-    // For example, using Google Sheets API, Airtable, or SendGrid
-    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ 
+          success: false,
+          error: 'Validation Error',
+          message: 'Please provide a valid email address'
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      };
+    }
+
+    // Log the form submission (for monitoring and debugging)
+    console.log('Form submission received:', {
+      name: formData.name,
+      email: formData.email,
+      intent: formData.intent || 'Not specified',
+      timestamp: new Date().toISOString()
+    });
+
+    // Return success response
     return {
       statusCode: 200,
       body: JSON.stringify({ 
-        message: 'Form submitted successfully',
-        data 
+        success: true,
+        message: 'Thank you for your message! I will get back to you soon.'
       }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     };
+    
   } catch (error) {
-    console.error('Error processing form:', error);
+    console.error('Error processing form submission:', error);
     
     return {
       statusCode: 500,
       body: JSON.stringify({ 
-        error: 'Failed to process form submission',
-        details: error.message 
+        success: false,
+        error: 'Server Error',
+        message: 'An unexpected error occurred while processing your submission. Please try again later.'
       }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
     };
   }
 };

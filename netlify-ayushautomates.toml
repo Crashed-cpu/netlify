@@ -1,0 +1,17 @@
+# Deployment configuration for ayushautomates.netlify.app
+[build]
+  command = ""
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "18.20.3"
+  NPM_VERSION = "9.8.1"
+  NODE_ENV = "production"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Form submission handling
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
